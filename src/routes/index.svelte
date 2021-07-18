@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script>
 	import PokeCard from '../components/pokecard.svelte';
 	import { fetchPokemon, sort_by_key } from '../utils';
