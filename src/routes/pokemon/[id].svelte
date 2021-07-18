@@ -7,9 +7,8 @@
 
 <script>
 	import PokeDetailsCard from '../../components/pokedetailscard.svelte';
-	import { pokemon } from '../../stores/pokemart';
 	
 	export let id;
 </script>
 
-<PokeDetailsCard pokemon={pokemon} id={id} />
+<PokeDetailsCard id={id} />

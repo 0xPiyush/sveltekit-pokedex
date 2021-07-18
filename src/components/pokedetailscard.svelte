@@ -1,11 +1,16 @@
 <script>
-	export let pokemon;
+	import { fetchPokemon } from '../utils';
+
 	export let id;
-	const pokemonData = $pokemon[id-1];
+	let pokemonData = fetchPokemon(id);
 </script>
 
 <div class="flex w-full justify-center mt-24">
 	<div class="w-full md:w-3/4 p-4 md:p-0 bg-gray-100 rounded-lg">
+		{#await pokemonData}
+			<h1>Loading...</h1>
+		{:then pokemonData} 
+		
 		<h1 class="w-full text-center text-3xl text-gray-800 p-3">
 			{pokemonData.name.toUpperCase()}
 		</h1>
@@ -14,14 +19,10 @@
 			<div>
 				<div class="text-xl text-gray-800">
 					<strong class="leading-loose"> Type: </strong>
-					{#each pokemonData.types as types}
-						<span>{types}, </span>
-					{/each}
+					<span>{pokemonData.types.join(', ')}</span>
 					<br />
 					<strong class="leading-loose"> Abilities: </strong>
-					{#each pokemonData.abilities as abilities}
-						<span>{abilities}, </span>
-					{/each}
+					<span>{pokemonData.abilities.join(', ')}</span>
 					<br />
 					<strong class="leading-loose">Height: </strong>
 					<span>{pokemonData.height}</span>
@@ -31,5 +32,6 @@
 				</div>
 			</div>
 		</div>
+		{/await}
 	</div>
 </div>
