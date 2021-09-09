@@ -9,7 +9,6 @@ export function sort_by_key(array, key)
 
 export async function fetchPokemon(id) {
     const url = 'https://pokeapi.co/api/v2/pokemon/';
-    const imageUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
     const res = await fetch(url + id);
     const data = await res.json();
     const pokemon = {
@@ -31,8 +30,7 @@ export async function fetchPokemon(id) {
         })(data),
         height: data.height,
         weight: data.weight,
-        image: imageUrl + data.id + '.png'
+        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     };
-
     return pokemon;
 }
